@@ -24,16 +24,28 @@ namespace Api.Controllers
         }
 
         [HttpPost("Login")]
-        public async Task<ActionResult<UsuarioModel>> Login ([FromBody] UsuarioModel userModel)
+        public async Task<ActionResult<bool>> Login ([FromBody] LoginModel userModel)
         {
+            if (string.IsNullOrEmpty(userModel.UsuarioEmail) || string.IsNullOrEmpty(userModel.UsuarioSenha))
+            {
+                return BadRequest("Email e senha são obrigatórios.");
+            }
             UsuarioModel userLogin = await _usuarioRepositorio.GetByEmail(userModel.UsuarioEmail);
-            if( userLogin.UsuarioEmail == userModel.UsuarioEmail && userLogin.UsuarioSenha == userModel.UsuarioSenha)
+           
+            if (userLogin == null)
+            {
+                return BadRequest(false);
+            }
+
+            bool isPasswordCorrect = userLogin.UsuarioSenha == userModel.UsuarioSenha;
+
+            if (isPasswordCorrect)
             {
                 return Ok(true);
             }
             else
             {
-                return Ok(false);
+                return Unauthorized(false);
             }
         }
 
