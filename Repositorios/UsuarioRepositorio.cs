@@ -1,6 +1,7 @@
 ﻿using Api.Data;
 using Api.Models;
 using Api.Repositorios.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace Api.Repositorios
