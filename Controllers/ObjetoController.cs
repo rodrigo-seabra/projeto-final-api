@@ -23,6 +23,21 @@ namespace Api.Controllers
             return Ok(objs);
         }
 
+
+        [HttpGet("GetAllMissingObj")]
+        public async Task<ActionResult<List<ObjetoModel>>> GetAllMissingObj()
+        {
+            List<ObjetoModel> objs = await _objetoRepositorio.GetAllMissingObj();
+            if( objs == null)
+            {
+                return BadRequest(404);
+            }
+            else
+            {
+                return Ok(objs);
+            }
+        }
+
         [HttpGet("GetObjetoId/{id}")]
         public async Task<ActionResult<ObjetoModel>> GetObjetoId(int id)
         {

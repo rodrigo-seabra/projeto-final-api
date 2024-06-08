@@ -22,7 +22,8 @@
 
         public static implicit operator List<ObjetoModel>(ObjetoModel v)
         {
-            throw new NotImplementedException();
+            return new List<ObjetoModel> { v };
         }
+
     }
 }

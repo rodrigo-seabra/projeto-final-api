@@ -32,6 +32,12 @@ namespace Api.Repositorios
             return await _dbContext.Objeto.ToListAsync();
         }
 
+        public async Task<List<ObjetoModel>> GetAllMissingObj()
+        {
+            return await _dbContext.Objeto.Where(x => x.ObjetoStatus == 1).ToListAsync();
+
+        }
+
         public async Task<ObjetoModel> GetById(int id)
         {
             return await _dbContext.Objeto.FirstOrDefaultAsync(x => x.ObjetoId == id);
