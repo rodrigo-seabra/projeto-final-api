@@ -24,7 +24,7 @@ namespace Api.Controllers
         }
 
         [HttpPost("Login")]
-        public async Task<ActionResult<bool>> Login ([FromBody] LoginModel userModel)
+        public async Task<ActionResult<dynamic>> Login ([FromBody] LoginModel userModel)
         {
             if (string.IsNullOrEmpty(userModel.UsuarioEmail) || string.IsNullOrEmpty(userModel.UsuarioSenha))
             {
@@ -34,18 +34,18 @@ namespace Api.Controllers
            
             if (userLogin == null)
             {
-                return BadRequest(false);
+                return BadRequest(new { success = false });
             }
 
             bool isPasswordCorrect = userLogin.UsuarioSenha == userModel.UsuarioSenha;
 
             if (isPasswordCorrect)
             {
-                return Ok(true);
+                return Ok(new { success = true, user = userLogin });
             }
             else
             {
-                return Unauthorized(false);
+                return Unauthorized(new { success = false });
             }
         }
 
