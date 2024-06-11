@@ -59,25 +59,31 @@ namespace Api.Controllers
         [HttpPost("CreateUser")]
         public async Task<ActionResult<UsuarioModel>> InsertUser([FromBody] UsuarioModel userModel)
         {
-            if(userModel == null)
+            if (userModel == null)
             {
                 return BadRequest(400);
-            }else if( userModel.UsuarioEmail == null || userModel.UsuarioEmail == "")
+            }
+            else if (userModel.UsuarioEmail == null || userModel.UsuarioEmail == "")
             {
                 return BadRequest(400);
             }
             else if (userModel.UsuarioSenha == null || userModel.UsuarioSenha == "")
             {
                 return BadRequest(400);
-            }else if (userModel.UsuarioNome == null || userModel.UsuarioNome == "")
+            }
+            else if (userModel.UsuarioNome == null || userModel.UsuarioNome == "")
             {
                 return BadRequest(400);
             }
 
-                UsuarioModel user = await _usuarioRepositorio.InsertUser(userModel);
-                return Ok(user);
+            var existingUser = await _usuarioRepositorio.GetByEmail(userModel.UsuarioEmail);
+            if (existingUser != null)
+            {
+                return BadRequest("Email já está cadastrado");
+            }
 
-
+            UsuarioModel user = await _usuarioRepositorio.InsertUser(userModel);
+            return Ok(user);
         }
 
         [HttpPut("UpdateUser/{id:int}")]

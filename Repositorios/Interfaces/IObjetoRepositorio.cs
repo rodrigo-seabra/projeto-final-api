@@ -6,8 +6,8 @@ namespace Api.Repositorios.Interfaces
     {
         Task<List<ObjetoModel>> GetAll();
         Task<List<ObjetoModel>> GetAllMissingObj();
-       
         Task<ObjetoModel> GetById(int id);
+
         Task<ObjetoModel> InsertObj(ObjetoModel objeto);
 
         Task<ObjetoModel> UpdateObj(ObjetoModel objeto, int id);

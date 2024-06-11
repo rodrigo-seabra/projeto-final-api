@@ -38,6 +38,11 @@ namespace Api.Repositorios
             return await _dbContext.Observacoes.FirstOrDefaultAsync(x => x.ObservacoesId == id);
         }
 
+        public async Task<List<ObservacoesModel>> GetByObjectId(int ObjId)
+        {
+            return await _dbContext.Observacoes.Where(x => x.ObjetoId == ObjId).ToListAsync();
+        }
+
         public async Task<ObservacoesModel> InsertObs(ObservacoesModel observacao)
         {
             await _dbContext.Observacoes.AddAsync(observacao);
@@ -63,5 +68,7 @@ namespace Api.Repositorios
             }
             return observacoes;
         }
+
+    
     }
 }

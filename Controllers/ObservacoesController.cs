@@ -30,6 +30,14 @@ namespace Api.Controllers
             return Ok(obs);
         }
 
+        [HttpGet("GetObservacaoObjetoId/{id}")]
+        public async Task<ActionResult<ObservacoesModel>> GetObservacaoObjetoId(int id)
+        {
+            List<ObservacoesModel> obs = await _observacoesRepositorio.GetByObjectId(id);
+            return Ok(obs);
+        }
+
+
         [HttpPost("CreateObservacao")]
         public async Task<ActionResult<ObservacoesModel>> InsertObservacao([FromBody] ObservacoesModel obsModel)
         {

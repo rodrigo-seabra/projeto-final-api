@@ -43,6 +43,11 @@ namespace Api.Repositorios
             return await _dbContext.Objeto.FirstOrDefaultAsync(x => x.ObjetoId == id);
         }
 
+        public Task<ObjetoModel> GetObsByObjectId(int ObjId)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<ObjetoModel> InsertObj(ObjetoModel objeto)
         {
             await _dbContext.Objeto.AddAsync(objeto);

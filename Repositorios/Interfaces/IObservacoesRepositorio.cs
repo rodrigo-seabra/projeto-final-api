@@ -9,6 +9,8 @@ namespace Api.Repositorios.Interfaces
         Task<ObservacoesModel> GetById(int id);
         Task<ObservacoesModel> InsertObs(ObservacoesModel observacao);
 
+        Task<List<ObservacoesModel>> GetByObjectId(int objId);
+
         Task<ObservacoesModel> UpdateObs(ObservacoesModel observacao, int id);
 
         Task<bool> DeleteObs(int id);
