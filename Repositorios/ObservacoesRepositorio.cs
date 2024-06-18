@@ -60,6 +60,7 @@ namespace Api.Repositorios
             else
             {
                 observacoes.ObservacoesDescricao = observacao.ObservacoesDescricao;
+                observacoes.ObservacaoLocal = observacao.ObservacaoLocal;
                 observacoes.ObservacoesData = observacao.ObservacoesData;
                 observacoes.UsuarioId = observacao.UsuarioId;
                 observacoes.ObjetoId = observacao.ObjetoId;

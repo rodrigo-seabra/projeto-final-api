@@ -4,6 +4,7 @@
     {
         public int ObservacoesId { get; set; }
         public string? ObservacoesDescricao { get; set; }
+        public string? ObservacaoLocal { get; set; }
         public DateTime? ObservacoesData { get; set; }
         public int UsuarioId { get; set; }
         public int ObjetoId { get; set; }
