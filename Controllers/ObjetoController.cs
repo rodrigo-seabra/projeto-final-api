@@ -38,6 +38,20 @@ namespace Api.Controllers
             }
         }
 
+        [HttpGet("GetAllObjsByUserId/{userId}")]
+        public async Task<ActionResult<List<ObjetoModel>>> GetAllByUserId(int userId)
+        {
+            List<ObjetoModel> objs = await _objetoRepositorio.GetAllObjsByUserId(userId);
+            if (objs == null)
+            {
+                return BadRequest(404);
+            }
+            else
+            {
+                return Ok(objs);
+            }
+        }
+
         [HttpGet("GetObjetoId/{id}")]
         public async Task<ActionResult<ObjetoModel>> GetObjetoId(int id)
         {

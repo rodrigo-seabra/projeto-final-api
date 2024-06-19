@@ -38,16 +38,17 @@ namespace Api.Repositorios
 
         }
 
+        public async Task<List<ObjetoModel>> GetAllObjsByUserId(int userId)
+        {
+            return await _dbContext.Objeto.Where(x => x.UsuarioId == userId).ToListAsync();
+        }
+
         public async Task<ObjetoModel> GetById(int id)
         {
             return await _dbContext.Objeto.FirstOrDefaultAsync(x => x.ObjetoId == id);
         }
 
-        public Task<ObjetoModel> GetObsByObjectId(int ObjId)
-        {
-            throw new NotImplementedException();
-        }
-
+ 
         public async Task<ObjetoModel> InsertObj(ObjetoModel objeto)
         {
             await _dbContext.Objeto.AddAsync(objeto);
